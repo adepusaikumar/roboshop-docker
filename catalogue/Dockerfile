@@ -8,5 +8,4 @@ ENV MONGO="true" \
 
 RUN useradd roboshop
 USER roboshop
-EXPOSE 8080
-CMD ["node ", "server.js"]
+CMD ["node", "server.js"]
