@@ -1,11 +1,11 @@
-FROM 20.20.2-alpine3.23 AS builder
+FROM node:20.20.2-alpine3.23 AS builder
 # this creates /app and move there
 WORKDIR /app
 COPY package.json .
 COPY *.js .
 RUN npm install
 
-FROM 20.20.2-alpine3.23
+FROM node:20.20.2-alpine3.23
 WORKDIR /app
 COPY --from=builder /app /app
 ENV REDIS_HOST="redis" \
