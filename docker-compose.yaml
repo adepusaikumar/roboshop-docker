@@ -1,3 +1,4 @@
+name: roboshop
 services:
   catalogue:
     build: "./catalogue"
@@ -64,19 +65,27 @@ services:
     build: "./mongodb"
     image: adepusaikumar/mongodb:1.0.0
     container_name: mongodb
+    volumes:
+      - mongodb:/data/db
 
   redis:
     image: redis:7.0
     container_name: redis
+    volumes:
+      - redis:/data
 
   mysql:
     build: "./mysql"
     image: adepusaikumar/mysql:1.0.0
     container_name: mysql
+    volumes:
+      - mysql:/var/lib/mysql
   
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
@@ -86,3 +95,9 @@ networks:
     driver: bridge
     name: roboshop
     external: false # if true, you need to create network manually
+
+volumes:
+  mongodb: # docker volume create mongodb
+  redis:
+  mysql:
+  rabbitmq:
