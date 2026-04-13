@@ -3,6 +3,7 @@ WORKDIR /app
 COPY ./requirements.txt .
 COPY *.py .
 COPY payment.ini .
+RUN apk add --no-cache build-base linux-headers python3-dev
 RUN pip3 install -r requirements.txt
 
 FROM python:3.9.25-alpine3.22
